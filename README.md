@@ -56,6 +56,9 @@ Product product = productService.createProductObs(new ProductDraft.Builder()
     .productType(productType)
     .build()).toBlocking().first();
 
+```
+##### Uploading a Product Image #####
+```java
 // you will need to convert your image/JPEG to byte[]
 productService.uploadImage(product, imageByteArray).toBlocking().first();
 ```
