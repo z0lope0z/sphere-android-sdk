@@ -1,32 +1,33 @@
 package com.lopefied.sphereandroidsdk.auth;
 
-import com.google.common.base.Optional;
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by lope on 4/27/15.
  */
 public class Tokens {
+    @Expose
     @SerializedName("access_token")
     String accessToken;
+    @Expose
     @SerializedName("token_type")
     String tokenType;
+    @Expose
     @SerializedName("scope")
     String scope;
+    @Expose
     @SerializedName("expires_in")
-    Optional<Long> expiresIn;
-    @SerializedName("refresh_token")
-    String refreshToken;
+    Long expiresIn;
 
     public Tokens() {
     }
 
-    public Tokens(String accessToken, String tokenType, String scope, Optional<Long> expiresIn, String refreshToken) {
+    public Tokens(String accessToken, String tokenType, String scope, Long expiresIn) {
         this.accessToken = accessToken;
         this.tokenType = tokenType;
         this.scope = scope;
         this.expiresIn = expiresIn;
-        this.refreshToken = refreshToken;
     }
 
     public String getAccessToken() {
@@ -37,19 +38,11 @@ public class Tokens {
         this.accessToken = accessToken;
     }
 
-    public String getRefreshToken() {
-        return refreshToken;
-    }
-
-    public void setRefreshToken(String refreshToken) {
-        this.refreshToken = refreshToken;
-    }
-
-    public Optional<Long> getExpiresIn() {
+    public Long getExpiresIn() {
         return expiresIn;
     }
 
-    public void setExpiresIn(Optional<Long> expiresIn) {
+    public void setExpiresIn(Long expiresIn) {
         this.expiresIn = expiresIn;
     }
 

@@ -2,30 +2,41 @@ package com.lopefied.sphereandroidsdk.auth;
 
 import android.util.Base64;
 
+import com.squareup.okhttp.OkHttpClient;
+
+import retrofit.RestAdapter;
+import retrofit.client.Client;
+import retrofit.client.OkClient;
 import rx.Observable;
-import rx.functions.Func1;
 
 /**
  * Created by lope on 4/27/15.
  */
 public class AuthServiceImpl implements AuthService {
 
+    SphereAuthConfig sphereAuthConfig;
     AuthAPIService authAPIService;
 
+    public AuthServiceImpl(SphereAuthConfig sphereAuthConfig) {
+        this(sphereAuthConfig, new OkClient(new OkHttpClient()));
+    }
+
+    public AuthServiceImpl(SphereAuthConfig sphereAuthConfig, Client client) {
+        this.sphereAuthConfig = sphereAuthConfig;
+        RestAdapter restAdapter = new RestAdapter.Builder()
+                .setClient(client)
+                .setEndpoint(sphereAuthConfig.getAuthUrl()).build();
+        this.authAPIService = restAdapter.create(AuthAPIService.class);
+    }
+
     @Override
-    public Observable<String> getAccessTokenObs(SphereAuthConfig sphereAuthConfig) {
+    public Observable<Tokens> getAccessTokenObs() {
         return authAPIService
                 .getAccessTokensObs(
                         buildGrantType(),
                         buildScope(sphereAuthConfig.getProjectKey()),
                         buildBasicAuth(sphereAuthConfig.getClientId(), sphereAuthConfig.getClientSecret())
-                )
-                .map(new Func1<Tokens, String>() {
-                    @Override
-                    public String call(Tokens tokens) {
-                        return tokens.getAccessToken();
-                    }
-                });
+                );
     }
 
     private String buildGrantType() {

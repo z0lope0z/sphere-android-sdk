@@ -1,16 +1,20 @@
-package com.lopefied.sphereandroidsdk.product.model;
+package com.lopefied.sphereandroidsdk.product;
 
 import com.google.gson.annotations.SerializedName;
+import com.lopefied.sphereandroidsdk.commons.LocalizedName;
+import com.lopefied.sphereandroidsdk.commons.LocalizedSlug;
+import com.lopefied.sphereandroidsdk.producttype.ProductType;
 
 /**
  * Created by lope on 4/27/15.
  */
 public class ProductDraft {
+    @SerializedName("productType")
     private ProductType productType;
     @SerializedName("name")
-    private String name;
+    private LocalizedName name;
     @SerializedName("slug")
-    private String slug;
+    private LocalizedSlug slug;
     @SerializedName("description")
     private String description;
 
@@ -21,7 +25,7 @@ public class ProductDraft {
         this.description = builder.description;
     }
 
-    public ProductDraft(ProductType productType, String name, String slug, String description) {
+    public ProductDraft(ProductType productType, LocalizedName name, LocalizedSlug slug, String description) {
         this.productType = productType;
         this.name = name;
         this.slug = slug;
@@ -36,19 +40,19 @@ public class ProductDraft {
         this.productType = productType;
     }
 
-    public String getName() {
+    public LocalizedName getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(LocalizedName name) {
         this.name = name;
     }
 
-    public String getSlug() {
+    public LocalizedSlug getSlug() {
         return slug;
     }
 
-    public void setSlug(String slug) {
+    public void setSlug(LocalizedSlug slug) {
         this.slug = slug;
     }
 
@@ -62,8 +66,8 @@ public class ProductDraft {
 
     public static class Builder {
         private ProductType productType;
-        private String name;
-        private String slug;
+        private LocalizedName name;
+        private LocalizedSlug slug;
         private String description;
 
         public Builder productType(ProductType productType) {
@@ -71,12 +75,12 @@ public class ProductDraft {
             return this;
         }
 
-        public Builder name(String name) {
+        public Builder name(LocalizedName name) {
             this.name = name;
             return this;
         }
 
-        public Builder slug(String slug) {
+        public Builder slug(LocalizedSlug slug) {
             this.slug = slug;
             return this;
         }

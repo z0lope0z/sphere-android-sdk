@@ -1,10 +1,11 @@
 package com.lopefied.sphereandroidsdk.product;
 
-import com.lopefied.sphereandroidsdk.product.model.Product;
-
 import retrofit.http.Body;
+import retrofit.http.Header;
 import retrofit.http.POST;
 import retrofit.http.Path;
+import retrofit.mime.TypedByteArray;
+import retrofit.mime.TypedString;
 import rx.Observable;
 
 /**
@@ -12,7 +13,11 @@ import rx.Observable;
  */
 public interface ProductAPIService {
 
-    @POST("/{projectKey}/products")
-    public Observable<Product> executeCreateProduct(@Path("projectKey") String projectKey,
-                                                    @Body String productDraftJson);
+    @POST("/products")
+    public Observable<Product> executeCreateProduct(@Body TypedString productDraftJson);
+
+    @POST("/products/{productId}/images")
+    public Observable<Product> uploadProductImage(@Header("Content-Type") String contentType,
+                                                  @Path("productId") String productId,
+                                                  @Body TypedByteArray productDraftJson);
 }

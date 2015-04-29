@@ -11,14 +11,8 @@ import rx.Observable;
  */
 public interface AuthAPIService {
 
-    /**
-     * "grant_type=client_credentials&scope=manage_project:{projectKey}"
-     *
-     * @return
-     */
     @FormUrlEncoded
-    @POST("oauth/token")
-    // TODO: check if this should be separate
+    @POST("/oauth/token")
     public Observable<Tokens> getAccessTokensObs(@Field("grant_type") String grantType,
                                                  @Field("scope") String manageProject,
                                                  @Header("Authorization") String authHeader);
