@@ -1,4 +1,5 @@
-# sphere-android-sdk
+#SPHERE IO ANDROID SDK
+
 Android SDK for Sphere API
 
 The [sphere-jvm-sdk](https://github.com/sphereio/sphere-jvm-sdk) is built on Java 8. Android supports only up to Java 7.
