@@ -11,11 +11,11 @@ This project connects with the [Sphere API](http://dev.sphere.io/dev) using [Ret
 
 ----
 ##### Authentication #####
-```
+```java
 // build auth config
 SphereAuthConfig sphereAuthConfig = new SphereAuthConfig.Builder()
         .authUrl("<AUTH_URL>")
-        .projectKey(<PROJECT_KEY>")
+        .projectKey("<PROJECT_KEY>")
         .clientId("<CLIENT_ID>")
         .clientSecret("<CLIENT_SECRET>")
         .build();
@@ -26,7 +26,7 @@ Tokens tokens = authService.getAccessTokenObs().toBlocking().first();
 ```
 
 ##### Building the Client #####
-```
+```java
 // build the API configuration object using the auth config and the tokens object
 SphereApiConfig sphereApiConfig = new SphereApiConfig.Builder()
         .apiUrl("<API_ENDPOINT_URL>")
@@ -39,7 +39,7 @@ SphereClient sphereClient = new SphereClient(sphereApiConfig);
 ```
 
 ##### Creating a Product #####
-```
+```java
 // create a product type
 ProductTypeService productTypeService = new ProductTypeServiceImpl(sphereClient);
 ProductTypeDraft productTypeDraft = new ProductTypeDraft.Builder()
