@@ -55,4 +55,7 @@ Product product = productService.createProductObs(new ProductDraft.Builder()
     .slug(new LocalizedSlug(Locale.ENGLISH.getLanguage(), new Slugify().slugify("Sample Product 1")))
     .productType(productType)
     .build()).toBlocking().first();
+
+// you will need to convert your image/JPEG to byte[]
+productService.uploadImage(product, imageByteArray).toBlocking().first();
 ```
