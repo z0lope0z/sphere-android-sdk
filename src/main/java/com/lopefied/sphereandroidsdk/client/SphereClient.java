@@ -1,6 +1,9 @@
 package com.lopefied.sphereandroidsdk.client;
 
 import com.google.gson.Gson;
+import com.lopefied.sphereandroidsdk.auth.AuthService;
+import com.lopefied.sphereandroidsdk.auth.AuthServiceImpl;
+import com.lopefied.sphereandroidsdk.auth.Tokens;
 import com.squareup.okhttp.OkHttpClient;
 
 import retrofit.RequestInterceptor;
@@ -41,14 +44,18 @@ public class SphereClient {
                 .setRequestInterceptor(new RequestInterceptor() {
                     @Override
                     public void intercept(RequestFacade request) {
-                        request.addHeader("Authorization", "Bearer " + sphereApiConfig.getTokens().getAccessToken());
+                        // Tokens are generated for each and every request for now lol!
+                        AuthService authService = new AuthServiceImpl(sphereApiConfig.getAuthConfig(),
+                                client);
+                        Tokens tokens = authService.getAccessTokenObs().toBlocking().first();
+                        request.addHeader("Authorization", "Bearer " + tokens.getAccessToken());
                     }
                 })
                 .setEndpoint(buildApiEndpoint());
     }
 
     public String buildApiEndpoint() {
-        return sphereApiConfig.getApiUrl() + "/" + sphereApiConfig.getProjectKey();
+        return sphereApiConfig.getApiUrl() + "/" + sphereApiConfig.getAuthConfig().getProjectKey();
     }
 
     public RestAdapter buildRestAdapter() {

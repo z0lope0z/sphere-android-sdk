@@ -24,11 +24,9 @@ import rx.Observable;
 public class ProductServiceImpl implements ProductService {
 
     ProductAPIService productAPIService;
-    String projectKey;
 
     public ProductServiceImpl(SphereClient sphereClient) {
         this.productAPIService = sphereClient.buildRestAdapter().create(ProductAPIService.class);
-        this.projectKey = sphereClient.getSphereApiConfig().getProjectKey();
     }
 
     @Override

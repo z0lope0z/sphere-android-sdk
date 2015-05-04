@@ -16,7 +16,7 @@ public class ProductTypeServiceImpl implements ProductTypeService {
 
     public ProductTypeServiceImpl(SphereClient sphereClient) {
         this.productTypeAPIService = sphereClient.buildRestAdapter().create(ProductTypeAPIService.class);
-        this.projectKey = sphereClient.getSphereApiConfig().getProjectKey();
+        this.projectKey = sphereClient.getSphereApiConfig().getAuthConfig().getProjectKey();
     }
 
     @Override
