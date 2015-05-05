@@ -7,6 +7,20 @@ import java.util.List;
 
 /**
  * Created by lope on 4/27/15.
+ * <p/>
+ * Example:
+ * {
+ * "id":"145a9e07-b52e-4a1e-91da-a29a514e06f3",
+ * "version":1,
+ * "name":"BarcodeProduct",
+ * "description":"BarcodeProduct",
+ * "classifier":"Complex",
+ * "attributes":[
+ * <p/>
+ * ],
+ * "createdAt":"2015-05-05T02:49:24.281Z",
+ * "lastModifiedAt":"2015-05-05T02:49:24.281Z"
+ * }
  */
 public class ProductType {
 
@@ -18,7 +32,7 @@ public class ProductType {
     private String name;
     @SerializedName("description")
     private String description;
-    @SerializedName("description")
+    @SerializedName("attributes")
     private List<AttributeDefinition> attributes;
 
     public String getId() {
